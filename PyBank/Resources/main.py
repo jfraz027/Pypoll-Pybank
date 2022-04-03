@@ -24,7 +24,7 @@ with open(budget_path_csv) as csvfile:
     for row in csvreader:    
       month = row[0]
       
-      # Store Variables 
+      # Variables 
       date.append(row[0])
       months.append(month)
       values =int(row[1])
@@ -38,7 +38,7 @@ with open(budget_path_csv) as csvfile:
       final_profit = int(row[1])
       monthly_change_profits = final_profit - initial_profit
       
-      # List changes 
+      # Read data 
       changes.append(monthly_change_profits)
       net_total = sum(profit) 
       total_change_profits = total_change_profits + monthly_change_profits
@@ -46,12 +46,13 @@ with open(budget_path_csv) as csvfile:
       net_total_months =len(months) - 1
       budget_change =[]  
 
+      # Calculate change
     for i in range(len(profit) - 1):
       
       budget_change.append((profit[i + 1]) - (profit[i]))
       new_net_total = sum(budget_change)
 
-    # Formulate average change in profits
+    # Determine average change in profits
     average_net_change = new_net_total/net_total_months
     
       # Find profit max/min change by date 
@@ -60,26 +61,22 @@ with open(budget_path_csv) as csvfile:
 
     increase_date = date[changes.index(greatest_increase_profits)]
     decrease_date = date[changes.index(greatest_decrease_profits)]
-      
-    print("----------------------------------------------------------")
-    print("Financial Analysis")
-    print("----------------------------------------------------------")
-    print("Total Months: " + str(count))
-    print("Total Profits: " + "$" + str(total_profit))
-    print("Average Change is: $" + str(round(average_net_change, 2)))
-    print("Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_increase_profits) + ")")
-    print("Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_decrease_profits)+ ")")
-    print("----------------------------------------------------------")
+    
+
+output=f"""
+  ----------------------------------------------------------
+  Financial Analysis
+  ----------------------------------------------------------
+  Total Months: {str(count)}
+  Total Profits: {str(total_profit)}
+  Average Change: ${round(average_net_change, 2)}
+  Greatest Increase in Profits: {str(increase_date)}, ${str(greatest_increase_profits)}
+  Greatest Decrease in Profits: {str(decrease_date)}, ${str(greatest_decrease_profits)}
+  ----------------------------------------------------------
+  """
+print(output)
 
 # Open the file 
 with open("Financial_analysis.txt", "w") as output_csv_file:
-
-  output_csv_file.write("----------------------------------------------------------\n")
-  output_csv_file.write("Financial Analysis"+ "\n")
-  output_csv_file.write("----------------------------------------------------------\n\n")
-  output_csv_file.write("Total Months: " + str(count) + "\n")
-  output_csv_file.write("Total Profits: " + "$" + str(total_profit) +"\n")
-  output_csv_file.write(f"Average Change: ${round(average_net_change,2)}\n")
-  output_csv_file.write("Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_increase_profits) + ")\n")
-  output_csv_file.write("Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_decrease_profits) + ")\n")
-  output_csv_file.write("----------------------------------------------------------\n")
+  output_csv_file.write(output)
+  
