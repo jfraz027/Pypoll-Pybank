@@ -62,7 +62,7 @@ for i in range(len(vote_counts)):
         Winner = election_candidates[i]
 
 #--- create a text file with the analysis output ---
-election_data_file = os.path.join("Output", "election_data_output.txt")
+election_data_file = os.path.join("PyPoll", "Output", "election_data_output.txt")
 with open(election_data_file, 'w') as textfile:
     textfile.write(f"Election Results\n"
                    f"----------------------------\n"
@@ -79,6 +79,6 @@ with open(election_data_file, 'w') as textfile:
     f"----------------------------\n"   
     )
 # --- read the output file and print analysis to terminal ---
-    with open("election_data_output.txt", 'r') as analysis:
+    with open(election_data_file, 'r') as analysis:
         contents = analysis.read()
         print(contents)
