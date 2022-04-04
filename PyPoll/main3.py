@@ -62,7 +62,8 @@ for i in range(len(vote_counts)):
         Winner = election_candidates[i]
 
 #--- create a text file with the analysis output ---
-with open("election_data_output.txt", 'w') as textfile:
+election_data_file = os.path.join("Output", "election_data_output.txt")
+with open(election_data_file, 'w') as textfile:
     textfile.write(f"Election Results\n"
                    f"----------------------------\n"
                    f"Total Votes: {total_votes}\n"
