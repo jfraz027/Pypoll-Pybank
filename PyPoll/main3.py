@@ -49,27 +49,28 @@ for i in range(len(vote_counts)):
        winner_count = vote_counts[i]
        winner = election_candidates[i]
 
+#Path for Election results Output
 election_data_output = os.path.join("Analysis", "PyPoll_analysis.txt")
 
 # Create text file 
 with open("election_data_file.txt", 'w') as textfile:
 
-    textfile.write("Election Results"
-                   "----------------------------"
-                   "Total Votes: {total_votes}"
-                   "----------------------------"
-                   )
+    textfile.write(f"Election Results\n"
+    f"----------------------------\n"
+    f"Total Votes: {total_votes}\n"
+    f"----------------------------\n"
+    )
 
+    # --- for loop to iteratively write each candidate's info ---
     for i in range(len(election_candidates)):
-       
-        textfile.write("{election_candidates[i]}: {fixPercent(percentage_votes[i])} ({vote_counts[i]})")
-   
-        textfile.write("----------------------------"
-        "Winner: {winner}"
-        "----------------------------"   
+        textfile.write(f"{election_candidates[i]}: {fixPercent(percentage_votes[i])} ({vote_counts[i]})\n")
+
+    textfile.write(f"----------------------------\n"
+    f"Winner: {winner}\n"
+    f"----------------------------\n"
     )
 # Read file 
     election_data_file = os.path.join("PyPoll", "Output", "election_data_output.txt")
-    with open(election_data_file, 'r') as analysis:
-        Election_results = analysis.read()
+    with open(election_data_file, 'r') as Analysis:
+        Election_results = Analysis.read()
     print(Election_results)
