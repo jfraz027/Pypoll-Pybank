@@ -62,7 +62,7 @@ for i in range(len(VoteCounts)):
         #update Winner to the candidate name at index i
         Winner = UniqueCandidates[i]
 
-#--- create a text file with the analysis output ---
+##--- create a text file with the analysis output ---
 with open("outputfile.txt", 'w') as textfile:
     textfile.write(f"Election Results\n"
                    f"----------------------------\n"
@@ -73,7 +73,7 @@ with open("outputfile.txt", 'w') as textfile:
     # --- for loop to iteratively write each candidate's info ---
     for i in range(len(UniqueCandidates)):
         textfile.write(f"{UniqueCandidates[i]}: {fixPercent(VotePercent[i])} ({VoteCounts[i]})\n")
-
+        
     textfile.write(f"----------------------------\n"
                    f"Winner: {Winner}\n"
                    f"----------------------------\n"
